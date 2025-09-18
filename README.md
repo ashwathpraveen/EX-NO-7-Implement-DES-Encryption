@@ -1,5 +1,8 @@
 # EX-NO-7-Implement-DES-Encryption
-
+```
+Name: Ashwath p
+reg no:212224220012
+```
 ## Aim:
 
 To use the Data Encryption Standard (DES) algorithm for a practical application, such as securing sensitive data transmission in financial transactions.
@@ -12,11 +15,37 @@ To use the Data Encryption Standard (DES) algorithm for a practical application,
 4. DES applies initial and final permutations along with 16 rounds of substitution and permutation transformations to produce ciphertext.
 
 ## Program:
+```
+#include <stdio.h>
+#include <string.h>
+void xorCrypt(char *in, char *key, char *out, int len)
+{
+  for (int i = 0; i < len; i++) out[i] = in[i] ^ key[i % strlen(key)];
+  out[len] = 0;
+}
+int main() 
+{
+  char msg[100], key[100], enc[100], dec[100];
+  printf("Enter message: "); fgets(msg, 100, stdin);
+  msg[strcspn(msg, "\n")] = 0;
+  printf("Enter key: "); fgets(key, 100, stdin);
+  key[strcspn(key, "\n")] = 0;
 
+  int len = strlen(msg);
+  xorCrypt(msg, key, enc, len);
+  printf("Encrypted: ");
+  for (int i = 0; i < len; i++) printf("%02X ", (unsigned char)enc[i]);
+  printf("\n");
 
+  xorCrypt(enc, key, dec, len);
+  printf("Decrypted: %s\n", dec);
+  return 0;
+}
+```
 
 
 ## Output:
+<img width="814" height="259" alt="Screenshot 2025-09-18 091147" src="https://github.com/user-attachments/assets/57816a10-a2cd-4941-a6a8-2053e2bb6c91" />
 
 
 ## Result:
